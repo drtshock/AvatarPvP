@@ -61,12 +61,10 @@ public class Main extends JavaPlugin
 			} catch (IOException e) {
 				log.log(Level.SEVERE, "[AvatarPvP] Couldn't create config");
 			}
-			
 			/**
 			 * Write the config file here.
 			 * New, genius way to write it :)
 			 */
-			
 			try {
 				FileOutputStream fos = new FileOutputStream(new File(getDataFolder() + File.separator + "config.yml"));
 				InputStream is = getResource("config.yml");
