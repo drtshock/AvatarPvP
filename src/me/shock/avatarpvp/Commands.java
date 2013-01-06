@@ -34,7 +34,7 @@ public class Commands implements CommandExecutor
 		if (!(sender instanceof Player))
 		{
 			sender.sendMessage("[AvatarPvP] Only players can use commands.");
-			return false;
+			return true;
 		}
 		
 		/**
@@ -49,11 +49,13 @@ public class Commands implements CommandExecutor
 			if(args[0].isEmpty())
 			{
 				sender.sendMessage(apvp + "Use \"/bind\" to bind an ability to the item in hand.");
-				return false;
+				return true;
 			}
+			
 			/**
 			 * Some variables we need to get for different subcommands.
 			 */
+			
 			Player player = (Player) sender;
 			ItemStack itemstack = player.getItemInHand();
 			int amount = itemstack.getAmount();
@@ -61,6 +63,7 @@ public class Commands implements CommandExecutor
 			/**
 			 * Commands for earth benders.
 			 */
+			
 			if(args[0].equalsIgnoreCase("earth"))
 			{
 				if(sender.hasPermission("avatarpvp.earth"))
@@ -70,9 +73,10 @@ public class Commands implements CommandExecutor
 						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 						sender.sendMessage(apvp + "fortify - 5 second sphere of protection.");
 						sender.sendMessage(apvp + "golem - summon a rock golem to protect you.");
-						return false;
+						return true;
 					}
 					
+					// Fortify ability.
 					if(args[1].equalsIgnoreCase("fortify"))
 					{
 						if(sender.hasPermission("avatarpvp.earth.fortify"))
@@ -81,7 +85,7 @@ public class Commands implements CommandExecutor
 							if(amount != 1)
 							{
 								sender.sendMessage(apvp + "You can only have 1 item at a time.");
-								return false;
+								return true;
 							}
 							else
 							{
@@ -90,21 +94,57 @@ public class Commands implements CommandExecutor
 								if(!(lore.isEmpty()))
 								{
 									sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
-									return false;
+									return true;
 								}
 								else
 								{
 									lore.add(ChatColor.GREEN + "Fortify");
 									itemstack.setItemMeta(meta);
-									sender.sendMessage(apvp + "Successfully binded fortify to the item in your hand.");
-									return false;
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.GREEN + "fortify " + ChatColor.WHITE + "to the item in your hand.");
+									return true;
 								}
 							}
 						}
 						else
 						{
 							sender.sendMessage(noperm);
-							return false;
+							return true;
+						}
+					}
+					
+					// Rock Golem ability.
+					if(args[1].equalsIgnoreCase("golem"))
+					{
+						if(sender.hasPermission("avatarpvp.earth.golem"))
+						{
+							
+							if(amount != 1)
+							{
+								sender.sendMessage(apvp + "You can only have 1 item at a time.");
+								return true;
+							}
+							else
+							{
+								ItemMeta meta = itemstack.getItemMeta();
+								ArrayList<String> lore = new ArrayList<String>();
+								if(!(lore.isEmpty()))
+								{
+									sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+									return true;
+								}
+								else
+								{
+									lore.add(ChatColor.GREEN + "Golem");
+									itemstack.setItemMeta(meta);
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.GREEN + "golem" + ChatColor.WHITE + " to the item in your hand.");
+									return true;
+								}
+							}
+						}
+						else
+						{
+							sender.sendMessage(noperm);
+							return true;
 						}
 					}
 				}
@@ -116,6 +156,75 @@ public class Commands implements CommandExecutor
 			}
 			
 			/**
+			 * Water bender commands.
+			 * Heal - Healing 1 potion for 1 30 seconds.
+			 * Make configurable.
+			 */
+			
+			if(args[0].equalsIgnoreCase("water"))
+			{
+				if(sender.hasPermission("avatarpvp.water"))
+				{
+					// Check if they forgot to tell us which ability they want.
+					if(args[1].isEmpty())
+					{
+						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
+						sender.sendMessage(apvp + "fortify - 5 second sphere of protection.");
+						sender.sendMessage(apvp + "golem - summon a rock golem to protect you.");
+						return true;
+					}
+					
+					// If they told us then lets give them their ability.
+					else
+					{
+						// Heal ability.
+						if(args[1].equalsIgnoreCase("heal"))
+						{
+							if(sender.hasPermission("avatarpvp.water.heal"))
+							{
+								
+								if(amount != 1)
+								{
+									sender.sendMessage(apvp + "You can only have 1 item at a time.");
+									return true;
+								}
+								else
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.GREEN + "Heal");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.BLUE + "Heal " + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+							}
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+					}
+				}
+				
+				// No perms :(
+				else
+				{
+					sender.sendMessage(noperm);
+					return true;
+				}
+			}
+			
+			
+			/**
 			 * Clear binds from the item in hand.
 			 */
 			if(args[0].equalsIgnoreCase("clear"))
@@ -124,12 +233,13 @@ public class Commands implements CommandExecutor
 				List<String> oldLore = meta.getLore();
 				oldLore.clear();
 				sender.sendMessage(apvp + "Cleared bind from the item in your hand.");
-				return false;
+				return true;
 			}
 		}
 		
-		
-		
+		/**
+		 * End of commands. Finally :)
+		 */
 		return false;
 	}
 
