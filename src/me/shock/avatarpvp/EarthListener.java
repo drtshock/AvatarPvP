@@ -6,12 +6,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -95,13 +97,22 @@ public class EarthListener implements Listener
 	 */
 	
 	@EventHandler
-	public void onGolemSpawn(CreatureSpawnEvent event)
+	public void onGolemTarget(EntityTargetLivingEntityEvent event)
 	{
 		EntityType type = event.getEntityType();
-		SpawnReason reason = event.getSpawnReason();
-		if(type == EntityType.IRON_GOLEM && reason == SpawnReason.CUSTOM)
+		if(type == EntityType.IRON_GOLEM)
 		{
-			// TODO: figure this out :(
+			LivingEntity entityTarget = event.getTarget();
+			if(entityTarget instanceof Player)
+			{
+				Player player = (Player) entityTarget;
+				if(player.hasPermission("avatarpvp.earth"))
+				{
+					event.setCancelled(true);
+				}
+			}
+			return;
 		}
+		return;
 	}
 }
