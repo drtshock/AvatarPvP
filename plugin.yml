@@ -3,5 +3,5 @@ author: drtshock
 main: me.shock.avatarpvp.Main
 version: 0.1
 commands:
-
-permissions:
+  bind:
+    description: Bind an ability to the item in hand.

@@ -48,9 +48,9 @@ public class Commands implements CommandExecutor
 		
 		if(cmd.getName().equalsIgnoreCase("bind"))
 		{
-			if(args[0].isEmpty())
+			if(args.length > 2)
 			{
-				sender.sendMessage(apvp + "Use \"/bind\" to bind an ability to the item in hand.");
+				sender.sendMessage(apvp + "/bind - bind an ability to the item in hand.");
 				return true;
 			}
 			
@@ -72,7 +72,8 @@ public class Commands implements CommandExecutor
 			{
 				if(sender.hasPermission("avatarpvp.earth"))
 				{
-					if(args[1].isEmpty())
+					// Check if they told us which ability they want.
+					if(args.length != 2)
 					{
 						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 						sender.sendMessage(apvp + "fortify - 5 second sphere of protection.");
@@ -81,7 +82,7 @@ public class Commands implements CommandExecutor
 					}
 					
 					// Fortify ability.
-					if(args[1].equalsIgnoreCase("fortify"))
+					else if(args[1].equalsIgnoreCase("fortify"))
 					{
 						if(sender.hasPermission("avatarpvp.earth.fortify"))
 						{
@@ -102,7 +103,9 @@ public class Commands implements CommandExecutor
 								}
 								else
 								{
+									itemstack.setItemMeta(meta);
 									lore.add(ChatColor.GREEN + "Fortify");
+									meta.setLore(lore);
 									itemstack.setItemMeta(meta);
 									sender.sendMessage(apvp + "Successfully binded " + ChatColor.GREEN + "fortify " + ChatColor.WHITE + "to the item in your hand.");
 									return true;
@@ -117,7 +120,7 @@ public class Commands implements CommandExecutor
 					}
 					
 					// Rock Golem ability.
-					if(args[1].equalsIgnoreCase("golem"))
+					else if(args[1].equalsIgnoreCase("golem"))
 					{
 						if(sender.hasPermission("avatarpvp.earth.golem"))
 						{
@@ -138,7 +141,9 @@ public class Commands implements CommandExecutor
 								}
 								else
 								{
+									itemstack.setItemMeta(meta);
 									lore.add(ChatColor.GREEN + "Golem");
+									meta.setLore(lore);
 									itemstack.setItemMeta(meta);
 									sender.sendMessage(apvp + "Successfully binded " + ChatColor.GREEN + "golem" + ChatColor.WHITE + " to the item in your hand.");
 									return true;
@@ -170,7 +175,7 @@ public class Commands implements CommandExecutor
 				if(sender.hasPermission("avatarpvp.water"))
 				{
 					// Check if they forgot to tell us which ability they want.
-					if(args[1].isEmpty())
+					if(args.length != 2)
 					{
 						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 						sender.sendMessage(apvp + "fortify - 5 second sphere of protection.");
@@ -379,7 +384,7 @@ public class Commands implements CommandExecutor
 				if(sender.hasPermission("avatarpvp.air"))
 				{
 					// Check if they forgot to tell us which ability they want.
-					if(args[1].isEmpty())
+					if(args.length != 2)
 					{
 						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 						sender.sendMessage(apvp + "fly - have fly ability for 5 seconds.");
@@ -448,7 +453,7 @@ public class Commands implements CommandExecutor
 				if(sender.hasPermission("avatarpvp.anti"))
 				{
 					// Check if they forgot to tell us which ability they want.
-					if(args[1].isEmpty())
+					if(args.length != 2)
 					{
 						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 						sender.sendMessage(apvp + "chi - block your target from using bending powers for 15 seconds.");
