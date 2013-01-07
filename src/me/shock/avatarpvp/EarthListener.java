@@ -218,11 +218,13 @@ public class EarthListener implements Listener
 								loc.getWorld().spawnFallingBlock(locx16, Material.OBSIDIAN, (byte) 0);
 							}
 							player.sendMessage(apvp + "Obsidian fortification is protecting you.");
+							fortify.remove(player.getName());
+							fortify.put(player.getName(), System.currentTimeMillis());
 						}
 					}
 					else
 					{
-Location loc = player.getLocation();
+						Location loc = player.getLocation();
 						
 						Location loc1 = loc.add(2, -1, -2);
 						Location loc2 = loc.add(2, -1, -1);
