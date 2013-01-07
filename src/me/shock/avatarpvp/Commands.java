@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -225,6 +226,320 @@ public class Commands implements CommandExecutor
 				}
 			}
 			
+			/**
+			 * Fire Bender commands.
+			 * Fireball - shoot 3 fireballs every 3 seconds.
+			 * Lightning - strike lightning where looking during storms.
+			 * Fire Bow - always shoot fire arrows.
+			 */
+			
+			if(args[0].equalsIgnoreCase("fire"))
+			{
+				if(sender.hasPermission("avatarpvp.fire"))
+				{
+					// Check if they forgot to tell us which ability they want.
+					if(args[1].isEmpty())
+					{
+						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
+						sender.sendMessage(apvp + "fireball - shoot 3 fireballs every 10 seconds.");
+						sender.sendMessage(apvp + "lightning - strike lightning where you are looking during storms.");
+						sender.sendMessage(apvp + "firebow - bow that always shoots fire arrows.");
+						return true;
+					}
+					
+					// If they told us then lets give them their ability.
+					else
+					{
+						// Fireball ability.
+						if(args[1].equalsIgnoreCase("fireball"))
+						{
+							if(sender.hasPermission("avatarpvp.fire.fireball"))
+							{
+								
+								if(amount != 1)
+								{
+									sender.sendMessage(apvp + "You can only have 1 item at a time.");
+									return true;
+								}
+								else
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.DARK_RED + "Fireball");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "Fireball" + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+							}
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+						
+						// Lightning ability.
+						if(args[1].equalsIgnoreCase("lightning"))
+						{
+							if(sender.hasPermission("avatarpvp.fire.lightning"))
+							{
+								if(amount != 1)
+								{
+									sender.sendMessage(apvp + "You can only have 1 item at a time");
+									return true;
+								}
+								else
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.DARK_RED + "Lightning");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "Lightning" + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+							}
+							// No perms :(
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+						
+						// Lightning ability.
+						if(args[1].equalsIgnoreCase("lightning"))
+						{
+							if(sender.hasPermission("avatarpvp.fire.firebow"))
+							{
+								if(itemstack.getType() == Material.BOW)
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.DARK_RED + "FireBow");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "FireBow" + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+								else
+								{
+									sender.sendMessage(apvp + "You can only bind that to a bow.");
+									return true;
+								}
+							}
+							// No perms :(
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+					}
+				}
+				
+				// No perms :(
+				else
+				{
+					sender.sendMessage(noperm);
+					return true;
+				}
+			}
+			
+			/**
+			 * Air Bender command here.
+			 * Fly - have fly ability for 5 seconds.
+			 */
+			
+			if(args[0].equalsIgnoreCase("air"))
+			{
+				if(sender.hasPermission("avatarpvp.air"))
+				{
+					// Check if they forgot to tell us which ability they want.
+					if(args[1].isEmpty())
+					{
+						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
+						sender.sendMessage(apvp + "fly - have fly ability for 5 seconds.");
+						return true;
+					}
+					
+					// If they told us then lets give them their ability.
+					else
+					{
+						// Fly ability.
+						if(args[1].equalsIgnoreCase("fly"))
+						{
+							if(sender.hasPermission("avatarpvp.air.fly"))
+							{
+								
+								if(amount != 1)
+								{
+									sender.sendMessage(apvp + "You can only have 1 item at a time.");
+									return true;
+								}
+								else
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.GREEN + "Fly");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.AQUA + "Fly" + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+							}
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+					}
+				}
+				
+				// No perms :(
+				else
+				{
+					sender.sendMessage(noperm);
+					return true;
+				}
+
+			}
+			
+			
+			/**
+			 * Anti Bender commands.
+			 * Chi - block your target from using bending powers for 15 seconds.
+			 * Stun - stun opponent for 3 seconds.
+			 */
+			
+			if(args[0].equalsIgnoreCase("air"))
+			{
+				if(sender.hasPermission("avatarpvp.anti"))
+				{
+					// Check if they forgot to tell us which ability they want.
+					if(args[1].isEmpty())
+					{
+						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
+						sender.sendMessage(apvp + "chi - block your target from using bending powers for 15 seconds.");
+						sender.sendMessage(apvp + "stun - slow your target for 10 seconds.");
+						return true;
+					}
+					
+					// If they told us then lets give them their ability.
+					else
+					{
+						// Chi Blocker ability.
+						if(args[1].equalsIgnoreCase("chi"))
+						{
+							if(sender.hasPermission("avatarpvp.anti.chi"))
+							{
+								
+								if(amount != 1)
+								{
+									sender.sendMessage(apvp + "You can only have 1 item at a time.");
+									return true;
+								}
+								else
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.GREEN + "Chi Blocker");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.RED + "Chi Blocker" + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+							}
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+						
+						// Stun ability.
+						if(args[1].equalsIgnoreCase("chi"))
+						{
+							if(sender.hasPermission("avatarpvp.anti.stun"))
+							{
+								
+								if(amount != 1)
+								{
+									sender.sendMessage(apvp + "You can only have 1 item at a time.");
+									return true;
+								}
+								else
+								{
+									ItemMeta meta = itemstack.getItemMeta();
+									ArrayList<String> lore = new ArrayList<String>();
+									if(!(lore.isEmpty()))
+									{
+										sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+										return true;
+									}
+									else
+									{
+										lore.add(ChatColor.GREEN + "Electric Glove");
+										itemstack.setItemMeta(meta);
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.RED + "Electric Glove" + ChatColor.WHITE + "to the item in your hand.");
+										return true;
+									}
+								}
+							}
+							else
+							{
+								sender.sendMessage(noperm);
+								return true;
+							}
+						}
+					}
+				}
+				
+				// No perms :(
+				else
+				{
+					sender.sendMessage(noperm);
+					return true;
+				}
+
+			}
 			
 			/**
 			 * Clear binds from the item in hand.
@@ -234,6 +549,7 @@ public class Commands implements CommandExecutor
 				ItemMeta meta = itemstack.getItemMeta();
 				List<String> oldLore = meta.getLore();
 				oldLore.clear();
+				meta.setLore(null);
 				itemstack.setItemMeta(meta);
 				sender.sendMessage(apvp + "Cleared bind from the item in your hand.");
 				return true;
@@ -245,5 +561,4 @@ public class Commands implements CommandExecutor
 		 */
 		return false;
 	}
-
 }

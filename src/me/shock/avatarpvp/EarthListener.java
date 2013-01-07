@@ -178,6 +178,7 @@ public class EarthListener implements Listener
 							loc.getWorld().spawnFallingBlock(locx15, Material.OBSIDIAN, (byte) 0);
 							loc.getWorld().spawnFallingBlock(locx16, Material.OBSIDIAN, (byte) 0);
 						}
+						player.sendMessage(apvp + "Obsidian fortification is protecting you.");
 					}
 					else
 					{

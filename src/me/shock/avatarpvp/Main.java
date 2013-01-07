@@ -25,9 +25,8 @@ public class Main extends JavaPlugin
 
 	public void onEnable()
 	{
-		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new EarthListener(this), (this));
-		
+		loadListeners();
+		loadCommands();
 		loadConfig();
 		
 	}
@@ -37,8 +36,26 @@ public class Main extends JavaPlugin
 		
 	}
 	
+	
+	private void loadListeners()
+	{
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(new EarthListener(this), (this));
+		pm.registerEvents(new WaterListener(this), (this));
+		pm.registerEvents(new FireListener(this), (this));
+		pm.registerEvents(new AirListener(this), (this));
+		pm.registerEvents(new AntiListener(this), (this));
+		
+	}
+	
+	
+	private void loadCommands()
+	{
+		getCommand("bind").setExecutor(new Commands(this));	
+	}
+	
 	/**
-	 * Check if there is already a /AvatarPvP/config.yml
+	 * Check if there is already a /plugins/AvatarPvP/config.yml
 	 * If there isn't then copy a new one from the .jar
 	 * If there is then let them know in console :)
 	 */
