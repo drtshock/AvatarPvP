@@ -26,7 +26,7 @@ public class Main extends JavaPlugin
 	public void onEnable()
 	{
 		PluginManager pm = getServer().getPluginManager();
-		// pm.registerEvents(listener, (this));
+		pm.registerEvents(new EarthListener(this), (this));
 		
 		loadConfig();
 		

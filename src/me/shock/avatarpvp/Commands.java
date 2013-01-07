@@ -62,6 +62,8 @@ public class Commands implements CommandExecutor
 			
 			/**
 			 * Commands for earth benders.
+			 * Fortify - 5 seconds sphere protection.
+			 * Golem - summon a rock golem to protect you.
 			 */
 			
 			if(args[0].equalsIgnoreCase("earth"))
@@ -232,6 +234,7 @@ public class Commands implements CommandExecutor
 				ItemMeta meta = itemstack.getItemMeta();
 				List<String> oldLore = meta.getLore();
 				oldLore.clear();
+				itemstack.setItemMeta(meta);
 				sender.sendMessage(apvp + "Cleared bind from the item in your hand.");
 				return true;
 			}
