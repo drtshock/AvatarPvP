@@ -178,26 +178,19 @@ public class Commands implements CommandExecutor
 					if(args.length != 2)
 					{
 						sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
-						sender.sendMessage(apvp + "fortify - 5 second sphere of protection.");
-						sender.sendMessage(apvp + "golem - summon a rock golem to protect you.");
+						sender.sendMessage(apvp + "ice - Bow shoots ice arrow.");
 						return true;
 					}
 					
 					// If they told us then lets give them their ability.
 					else
 					{
-						// Heal ability.
-						if(args[1].equalsIgnoreCase("heal"))
+						// IceBow ability.
+						if(args[1].equalsIgnoreCase("ice"))
 						{
-							if(sender.hasPermission("avatarpvp.water.heal"))
+							if(sender.hasPermission("avatarpvp.water.icebow"))
 							{
-								
-								if(amount != 1)
-								{
-									sender.sendMessage(apvp + "You can only have 1 item at a time.");
-									return true;
-								}
-								else
+								if(itemstack.getType() == Material.BOW)
 								{
 									ItemMeta meta = itemstack.getItemMeta();
 									ArrayList<String> lore = new ArrayList<String>();
@@ -208,13 +201,19 @@ public class Commands implements CommandExecutor
 									}
 									else
 									{
-										lore.add(ChatColor.GREEN + "Heal");
+										lore.add(ChatColor.BLUE + "Ice Bow");
 										itemstack.setItemMeta(meta);
-										sender.sendMessage(apvp + "Successfully binded " + ChatColor.BLUE + "Heal " + ChatColor.WHITE + "to the item in your hand.");
+										sender.sendMessage(apvp + "Successfully binded " + ChatColor.BLUE + "Ice Bow" + ChatColor.WHITE + "to the item in your hand.");
 										return true;
 									}
 								}
+								else
+								{
+									sender.sendMessage(apvp + "You can only bind that to a bow.");
+									return true;
+								}
 							}
+							// No perms :(
 							else
 							{
 								sender.sendMessage(noperm);
@@ -329,7 +328,7 @@ public class Commands implements CommandExecutor
 						}
 						
 						// Lightning ability.
-						if(args[1].equalsIgnoreCase("lightning"))
+						if(args[1].equalsIgnoreCase("firebow"))
 						{
 							if(sender.hasPermission("avatarpvp.fire.firebow"))
 							{
