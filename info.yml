@@ -1,0 +1,106 @@
+---=== Abilities ===---
+#################################################
+# "Ability Name" (Offensive/Defensive)          #
+# - Description of Ability                      #
+# -- What it will actually do in game.          #
+# --- More Info                                 #
+# ** Permission                                 #
+#################################################
+ 
+TODO:
+ commands: fix feedback on failed command.
+ earth stuff: finish the fortify.
+# air: done
+ anti: everything
+# fire: done
+ water: everything but damage at night.
+ 
+ 
+        -= Earth Bender =-
+                "Emergency Fortifications" (Defensive)
+                - Provides a Temporary field of protection for 5 seconds.
+                -- Sphere of obsidian surrounding the player.
+                --- Cooldown of 60 seconds.
+                ** fort.earth.avatarpvp
+               
+                "Rock Golem" (Even Possible?)(Offensive/Defensive)
+                - Sumon an Iron Golem to aid in your defense!
+                -- Summons an Iron Golem to fight for the player.
+                --- Basically the Iron Golem would act as a tamed wolf. Life Span? Cooldown?
+                ** golem.earth.avatarpvp
+               
+        -= Water Bender =-
+                "Full Moon" (Even Possible?)(Offensive)
+                - Deal Slightly more damage during a full moon.
+                -- Deal 0.5 hearts more damage.
+                ** moon.water.avatarpvp
+ 
+                "Natural Born Swimmer" (Even Possible?)(Defensive)
+                - No Speed Reduction in Water
+                -- Self Explanatory...
+                ** swim.water.avatarpvp
+               
+                "Heal in Water"
+                - Heal yourself slowly in water.
+                -- Gain 1 Heart per 15 seconds. (maybe more?)
+                ** heal.water.avatarpvp
+               
+                "Icy Arrows" (Please change name p_p)
+                - Chance to freeze oppenent!
+                -- Certain odds to freeze an enemy in their tracks.
+                --- 10%-15% chance of freezing
+                --- 1-3 Seconds of Freeze
+                --- Cooldown on player that was frozen (15 Seconds).
+                ** icearrow.water.avatarpvp
+ 
+        -= Fire Bender =-
+                "Fire Strike" (Offensive)
+                - Throw a fireball at your opponent every 3 seconds.
+                -- Maybe mimic a blaze? Such as shoot 3 fireballs then a cooldown?
+                ** firestrike.fire.avatarpvp
+ 
+                "Lightning Bending" (Offensive)
+                - Control the Lightning and Cast a bolt down at your opponent!
+                -- Only during thunderstorm?
+                --- More Damage than regular bolt? Seeing as only avalable durning rain? Cooldown?!?!?!?
+                ** lightning.fire.avatarpvp
+               
+                "Fire Arrow" (Please change that name p_p)
+                - All arrows shot from a bow are automatically on fire.
+                -- ONLY IF THE BOW IS NOT ENCHANTED
+                ** firearrow.fire.avatarpvp
+               
+        -= Air Bender =-
+                "Air Glider" (Defensive)
+                - Pull out your air glider and fly away for 5 seconds.
+                -- Temporary Fly for 5 seconds.
+                --- FALL DAMAGE. What comes up must come down!
+                --- Countdown in chat would be nice.
+                ** glider.air.avatarpvp
+ 
+                "Air Bubble" (Defensive)
+                - When under water you can hold your breath for twice as long.
+                -- Resperation I enchantment when under water.
+                ** bubble.air.avatarpvp
+               
+        -= Anti Bender =-
+                "Medic" (Defensive)
+                - Spawn with a Regeneration II potion.
+                -- Self Explanatory
+                -- HIGH REASONABILTY OF ABUSE. Maybe only spawn with one every 10 mins?
+                ** medic.anti.avatarpvp
+ 
+                "Smoke Bomb" (Defensive/Offensive)
+                - Throw Down a smoke bomb to blind your opponent for 3 seconds.
+                -- Blind people in a certain radius? excluding your own class.
+                ** smoke.anti.avatarpvp
+ 
+                "Chi Blocker" (Offensive)
+                - Block your opponent from using any bending powers for 15 seconds.
+                -- Disables ALL use of abilities for 15 seconds.
+                ** chiblocker.anti.avatarpvp
+ 
+                "Electric Glove" (Defensive/Offensive)
+                - Stun your opponent for 3 seconds.
+                -- Slowness I/II potion effect?
+                ** glove.anti.avatarpvp

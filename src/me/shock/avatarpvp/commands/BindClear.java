@@ -45,7 +45,7 @@ public class BindClear implements CommandExecutor
 		 * Alias apvp, bind.
 		 */
 		
-		if(cmd.getName().equalsIgnoreCase("apvp") || cmd.getName().equalsIgnoreCase("bind"))
+		if(cmd.getName().equalsIgnoreCase("bind"))
 		{
 			if(args.length == 1)
 			{

@@ -156,22 +156,22 @@ public class EarthListener implements Listener
 									 */
 									Location loc = player.getLocation();
 									
-									Location loc1 = loc.add(2, -1, -2);
-									Location loc2 = loc.add(2, -1, -1);
-									Location loc3 = loc.add(2, -1, 0);
-									Location loc4 = loc.add(2, -1, 1);
-									Location loc5 = loc.add(2, -1, 1);
-									Location loc6 = loc.add(-1, -1, 2);
-									Location loc7 = loc.add(0, -1, 2);
-									Location loc8 = loc.add(1, -1, 2);
-									Location loc9 = loc.add(-2, -1, -2);
-									Location loc10 = loc.add(-2, -1, -1);
-									Location loc11 = loc.add(-2, -1, 0);
-									Location loc12 = loc.add(-2, -1, 1);
-									Location loc13 = loc.add(-2, -1, 2);
-									Location loc14 = loc.add(-1, -1, -2);
-									Location loc15 = loc.add(0, -1, -2);
-									Location loc16 = loc.add(1, -1, -2);
+									Location loc1 = loc.add(2, 0, -2);
+									Location loc2 = loc.add(2, 0, -1);
+									Location loc3 = loc.add(2, 0, 0);
+									Location loc4 = loc.add(2, 0, 1);
+									Location loc5 = loc.add(2, 0, 1);
+									Location loc6 = loc.add(-1, 0, 2);
+									Location loc7 = loc.add(0, 0, 2);
+									Location loc8 = loc.add(1, 0, 2);
+									Location loc9 = loc.add(-2, 0, -2);
+									Location loc10 = loc.add(-2, 0, -1);
+									Location loc11 = loc.add(-2, 0, 0);
+									Location loc12 = loc.add(-2, 0, 1);
+									Location loc13 = loc.add(-2, 0, 2);
+									Location loc14 = loc.add(-1, 0, -2);
+									Location loc15 = loc.add(0, 0, -2);
+									Location loc16 = loc.add(1, 0, -2);
 
 									/**
 									 * Lets spawn some obsidian around the player.
@@ -232,22 +232,22 @@ public class EarthListener implements Listener
 							{
 								Location loc = player.getLocation();
 								
-								Location loc1 = loc.add(2, -1, -2);
-								Location loc2 = loc.add(2, -1, -1);
-								Location loc3 = loc.add(2, -1, 0);
-								Location loc4 = loc.add(2, -1, 1);
-								Location loc5 = loc.add(2, -1, 1);
-								Location loc6 = loc.add(-1, -1, 2);
-								Location loc7 = loc.add(0, -1, 2);
-								Location loc8 = loc.add(1, -1, 2);
-								Location loc9 = loc.add(-2, -1, -2);
-								Location loc10 = loc.add(-2, -1, -1);
-								Location loc11 = loc.add(-2, -1, 0);
-								Location loc12 = loc.add(-2, -1, 1);
-								Location loc13 = loc.add(-2, -1, 2);
-								Location loc14 = loc.add(-1, -1, -2);
-								Location loc15 = loc.add(0, -1, -2);
-								Location loc16 = loc.add(1, -1, -2);
+								Location loc1 = loc.add(2, 0, -2);
+								Location loc2 = loc.add(2, 0, -1);
+								Location loc3 = loc.add(2, 0, 0);
+								Location loc4 = loc.add(2, 0, 1);
+								Location loc5 = loc.add(2, 0, 1);
+								Location loc6 = loc.add(-1, 0, 2);
+								Location loc7 = loc.add(0, 0, 2);
+								Location loc8 = loc.add(1, 0, 2);
+								Location loc9 = loc.add(-2, 0, -2);
+								Location loc10 = loc.add(-2, 0, -1);
+								Location loc11 = loc.add(-2, 0, 0);
+								Location loc12 = loc.add(-2, 0, 1);
+								Location loc13 = loc.add(-2, 0, 2);
+								Location loc14 = loc.add(-1, 0, -2);
+								Location loc15 = loc.add(0, 0, -2);
+								Location loc16 = loc.add(1, 0, -2);
 
 								/**
 								 * Lets spawn some obsidian around the player.

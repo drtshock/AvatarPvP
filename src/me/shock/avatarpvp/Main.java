@@ -13,6 +13,7 @@ import me.shock.avatarpvp.commands.Air;
 import me.shock.avatarpvp.commands.Anti;
 import me.shock.avatarpvp.commands.Water;
 import me.shock.avatarpvp.commands.Fire;
+import me.shock.avatarpvp.commands.Config;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -57,7 +58,7 @@ public class Main extends JavaPlugin
 	private void loadCommands()
 	{
 		getCommand("bind").setExecutor(new BindClear(this));
-		getCommand("apvp").setExecutor(new BindClear(this));
+		getCommand("apvp").setExecutor(new Config(this));
 		getCommand("earth").setExecutor(new Earth(this));
 		getCommand("air").setExecutor(new Air(this));
 		getCommand("anti").setExecutor(new Anti(this));

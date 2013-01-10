@@ -69,8 +69,8 @@ public class WaterListener implements Listener
 			{
 				Player damagedPlayer = (Player) damagee;
 				Random generator = new Random();
-				int random = generator.nextInt(10);
-				if(random == 5)
+				int random = generator.nextInt(4);
+				if(random == 3)
 				{
 					damagedPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, slowLevel));
 				}

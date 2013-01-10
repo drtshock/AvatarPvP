@@ -107,7 +107,7 @@ public class FireListener implements Listener
 					if(lightning.containsKey(name))
 					{
 						long diff = (System.currentTimeMillis() - lightning.get(name) / 1000);
-						if(diff > lightningCool)
+						if(diff <= lightningCool)
 						{
 							List<Entity> nearby = player.getNearbyEntities(lightningRadius, lightningRadius, lightningRadius);
 							
@@ -142,6 +142,11 @@ public class FireListener implements Listener
 								}
 							}
 						}
+						else
+						{
+							player.sendMessage(apvp + "You must wait " + ChatColor.RED + diff + " seconds to use this again.");
+							return;
+						}
 					}
 				}
 			}
@@ -175,4 +180,5 @@ public class FireListener implements Listener
 			}
 		}
 	}
+	
 }
