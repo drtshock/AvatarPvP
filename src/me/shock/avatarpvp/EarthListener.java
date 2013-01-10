@@ -37,7 +37,6 @@ public class EarthListener implements Listener
 	long fortifycool = (long) 30;
 	long golemcool = (long) 30;
 
-	
 	String apvp = ChatColor.BLUE + "[" + ChatColor.WHITE + "AvatarPvP" + ChatColor.BLUE + "]" + ChatColor.WHITE + ": ";
 	
 	/**

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,7 +28,10 @@ public class AirListener implements Listener
 	 */
 	String apvp = ChatColor.BLUE + "[" + ChatColor.WHITE + "AvatarPvP" + ChatColor.BLUE + "]" + ChatColor.WHITE + ": ";
 	String noperm = apvp + "You don't have permission to use this.";
+	
 	public HashMap<String, Long> fly = new HashMap<String, Long>();
+	public HashMap<String, Long> inFlight = new HashMap<String, Long>();
+	
 	//long flyCool = plugin.getConfig().getInt("AirNation.fly.cooldown");
 	long flyCool = 30;
 
@@ -41,9 +45,8 @@ public class AirListener implements Listener
 	public void onAirFlight(PlayerInteractEvent event)
 	{
 		Player player = event.getPlayer();
-		String name = player.getName();
 		Action action = event.getAction();
-		if((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && player.getItemInHand() != null)
+		if((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && player.getItemInHand().getAmount() > 0)
 		{
 			ItemStack inHand = player.getItemInHand();
 			ItemMeta meta = inHand.getItemMeta();
@@ -67,25 +70,27 @@ public class AirListener implements Listener
 						 * how much time they have left.
 						 */
 						
-						if(fly.containsKey(name))
+						if(fly.containsKey(player.getName()))
 						{
-							long diff = (System.currentTimeMillis() - fly.get(name)) / 1000;
-							if(diff < flyCool)
+							long diff = (System.currentTimeMillis() - fly.get(player.getName())) / 1000;
+							if(flyCool < diff)
 							{
 								player.setVelocity(player.getVelocity().setY(2D));
-								fly.put(name, System.currentTimeMillis());
+								fly.put(player.getName(), System.currentTimeMillis());
+								inFlight.put(player.getName(), System.currentTimeMillis());
 								return;
 							}
 							else
 							{
-								player.sendMessage(apvp + "You must wait " + ChatColor.RED + diff + " to use this again.");
+								player.sendMessage(apvp + "You must wait " + ChatColor.RED + (flyCool - diff) + ChatColor.WHITE + " seconds before using this again.");
 								return;
 							}
 						}
 						else
 						{
 							player.setVelocity(player.getVelocity().setY(2D));
-							fly.put(name, System.currentTimeMillis());
+							fly.put(player.getName(), System.currentTimeMillis());
+							inFlight.put(player.getName(), System.currentTimeMillis());
 							return;
 						}
 						
@@ -97,6 +102,32 @@ public class AirListener implements Listener
 					}
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Reduce fall damage if
+	 * using the flying ability.
+	 */
+	
+	@EventHandler
+	public void onAirFall(EntityDamageEvent event)
+	{
+		if ((event.getCause() == EntityDamageEvent.DamageCause.FALL) && ((event.getEntity() instanceof Player))) 
+		{
+			Player player = (Player) event.getEntity();
+			if(inFlight.containsKey(player.getName()))
+			{
+				long diff = (System.currentTimeMillis() - inFlight.get(player.getName())) / 1000;
+
+				if (diff < 10)
+				{
+					event.setDamage(event.getDamage() / 5);
+					inFlight.remove(player.getName());
+				}
+			}
+			
+		      return;
 		}
 	}
 }
