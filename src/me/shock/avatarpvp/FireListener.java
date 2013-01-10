@@ -37,10 +37,12 @@ public class FireListener implements Listener
 	public void onFireball(PlayerInteractEvent event)
 	{
 		
-		long fireballCool = plugin.getConfig().getLong("FireNation.fireball.cooldown");
-		long lightningCool = plugin.getConfig().getLong("FireNation.lightning.cooldown");
+		//long fireballCool = (long) plugin.getConfig().getInt("FireNation.fireball.cooldown");
+		//long lightningCool = (long) plugin.getConfig().getInt("FireNation.lightning.cooldown");
 		int lightningRadius = plugin.getConfig().getInt("FireNation.lightning.radius");
 		int lightningDamage = plugin.getConfig().getInt("FireNation.lightning.damage");
+		long lightningCool = 30;
+		long fireballCool = 30;
 		
 		Player player = event.getPlayer();
 		Action action = event.getAction();

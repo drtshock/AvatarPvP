@@ -28,8 +28,8 @@ public class AirListener implements Listener
 	String apvp = ChatColor.BLUE + "[" + ChatColor.WHITE + "AvatarPvP" + ChatColor.BLUE + "]" + ChatColor.WHITE + ": ";
 	String noperm = apvp + "You don't have permission to use this.";
 	public HashMap<String, Long> fly = new HashMap<String, Long>();
-	long flyCool = plugin.getConfig().getInt("AirNation.fly.cooldown");
-
+	//long flyCool = plugin.getConfig().getInt("AirNation.fly.cooldown");
+	long flyCool = 30;
 
 	
 	

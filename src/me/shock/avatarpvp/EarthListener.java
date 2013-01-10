@@ -32,8 +32,11 @@ public class EarthListener implements Listener
 	public HashMap<String, Long> fortify = new HashMap<String, Long>();
 	public HashMap<String, Long> golem = new HashMap<String, Long>();
 	
-	long fortifycool = plugin.getConfig().getLong("EarthNation.fortify.cooldown");
-	long golemcool = plugin.getConfig().getLong("EarthNation.golem.cooldown");
+	//int fcool = plugin.getConfig().getInt("EarthNation.fortify.cooldown");
+	//int gcool = plugin.getConfig().getInt("EarthNation.golem.cooldown");
+	long fortifycool = (long) 30;
+	long golemcool = (long) 30;
+
 	
 	String apvp = ChatColor.BLUE + "[" + ChatColor.WHITE + "AvatarPvP" + ChatColor.BLUE + "]" + ChatColor.WHITE + ": ";
 	

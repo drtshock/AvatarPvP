@@ -14,6 +14,7 @@ import me.shock.avatarpvp.commands.Anti;
 import me.shock.avatarpvp.commands.Water;
 import me.shock.avatarpvp.commands.Fire;
 import me.shock.avatarpvp.commands.Config;
+import me.shock.avatarpvp.WaterTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -36,7 +37,8 @@ public class Main extends JavaPlugin
 		loadListeners();
 		loadCommands();
 		loadConfig();
-	}
+		
+		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new WaterTask(this, 10), 0);	}
 	
 	public void onDisable()
 	{
