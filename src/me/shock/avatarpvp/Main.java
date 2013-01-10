@@ -7,6 +7,13 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import me.shock.avatarpvp.commands.BindClear;
+import me.shock.avatarpvp.commands.Earth;
+import me.shock.avatarpvp.commands.Air;
+import me.shock.avatarpvp.commands.Anti;
+import me.shock.avatarpvp.commands.Water;
+import me.shock.avatarpvp.commands.Fire;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -28,7 +35,6 @@ public class Main extends JavaPlugin
 		loadListeners();
 		loadCommands();
 		loadConfig();
-		
 	}
 	
 	public void onDisable()
@@ -45,13 +51,17 @@ public class Main extends JavaPlugin
 		pm.registerEvents(new FireListener(this), (this));
 		pm.registerEvents(new AirListener(this), (this));
 		pm.registerEvents(new AntiListener(this), (this));
-		
 	}
 	
 	
 	private void loadCommands()
 	{
-		getCommand("bind").setExecutor(new Commands(this));	
+		getCommand("bind").setExecutor(new BindClear(this));
+		getCommand("earth").setExecutor(new Earth(this));
+		getCommand("air").setExecutor(new Air(this));
+		getCommand("anti").setExecutor(new Anti(this));
+		getCommand("water").setExecutor(new Water(this));
+		getCommand("fire").setExecutor(new Fire(this));
 	}
 	
 	/**
