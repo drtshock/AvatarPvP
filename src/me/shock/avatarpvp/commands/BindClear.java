@@ -1,5 +1,6 @@
 package me.shock.avatarpvp.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.shock.avatarpvp.Main;
@@ -37,6 +38,7 @@ public class BindClear implements CommandExecutor
 		
 		Player player = (Player) sender;
 		ItemStack itemstack = player.getItemInHand();
+		int amount = itemstack.getAmount();
 		
 		/**
 		 * Clear the binds from the item
@@ -45,17 +47,46 @@ public class BindClear implements CommandExecutor
 		
 		if(cmd.getName().equalsIgnoreCase("apvp") || cmd.getName().equalsIgnoreCase("bind"))
 		{
-			if(args[0].equalsIgnoreCase("clear"))
+			if(args.length == 1)
 			{
-				ItemMeta meta = itemstack.getItemMeta();
-				List<String> oldLore = meta.getLore();
-				oldLore.clear();
-				meta.setLore(null);
-				itemstack.setItemMeta(meta);
-				sender.sendMessage(apvp + "Cleared bind from the item in your hand.");
-				return true;
+				if(args[0].equalsIgnoreCase("clear"))
+				{
+					
+					if(amount != 1)
+					{
+						sender.sendMessage(apvp + "You can only have 1 item at a time.");
+						return true;
+					}
+					else
+					{
+						ItemMeta meta = itemstack.getItemMeta();
+						ArrayList<String> lore = new ArrayList<String>();
+						
+						if(!(lore.isEmpty()))
+						{
+							sender.sendMessage(apvp + "You can't bind more than one ability to an item.");
+							return true;
+						}
+						else
+						{
+							List<String> oldLore = meta.getLore();
+							oldLore.clear();
+							meta.setLore(null);
+							itemstack.setItemMeta(meta);
+							sender.sendMessage(apvp + "Cleared bind from the item in your hand.");
+							return true;
+						}
+					}
+					
+				}
+				
+				else
+				{
+					player.sendMessage(apvp + "/bind clear - clear binds from the item in hand.");
+				}
 			}
-			else
+			
+			else if(args.length != 1)
 			{
 				player.sendMessage(apvp + "/bind clear - clear binds from the item in hand.");
 			}

@@ -4,4 +4,16 @@ main: me.shock.avatarpvp.Main
 version: 0.1
 commands:
   bind:
-    description: Bind an ability to the item in hand.
+    description: Clear binds with /bind clear
+  apvp:
+    description: Default command.
+  earth:
+    description: Bind an earth ability.
+  air:
+    description: Bind an air ability.
+  anti:
+    description: Bind an anti ability.
+  water:
+    description: Bind a water ability.
+  fire:
+    description: Bind a fire ability.

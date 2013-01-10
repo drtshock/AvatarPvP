@@ -55,7 +55,7 @@ public class Fire implements CommandExecutor
 			if(sender.hasPermission("avatarpvp.fire"))
 			{
 				// Check if they forgot to tell us which ability they want.
-				if(args[1].isEmpty())
+				if(args.length != 1)
 				{
 					sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 					sender.sendMessage(apvp + "fireball - shoot 3 fireballs every 10 seconds.");
@@ -89,7 +89,9 @@ public class Fire implements CommandExecutor
 								}
 								else
 								{
-									lore.add(ChatColor.DARK_RED + "Fireball");
+									itemstack.setItemMeta(meta);
+									lore.add(ChatColor.DARK_RED + "FireBall");
+									meta.setLore(lore);
 									itemstack.setItemMeta(meta);
 									sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "Fireball" + ChatColor.WHITE + "to the item in your hand.");
 									return true;
@@ -124,7 +126,9 @@ public class Fire implements CommandExecutor
 								}
 								else
 								{
+									itemstack.setItemMeta(meta);
 									lore.add(ChatColor.DARK_RED + "Lightning");
+									meta.setLore(lore);
 									itemstack.setItemMeta(meta);
 									sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "Lightning" + ChatColor.WHITE + "to the item in your hand.");
 									return true;
@@ -155,9 +159,11 @@ public class Fire implements CommandExecutor
 								}
 								else
 								{
-									lore.add(ChatColor.DARK_RED + "FireBow");
 									itemstack.setItemMeta(meta);
-									sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "FireBow" + ChatColor.WHITE + "to the item in your hand.");
+									lore.add(ChatColor.DARK_RED + "FireBow");
+									meta.setLore(lore);
+									itemstack.setItemMeta(meta);
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "FireBow " + ChatColor.WHITE + "to the item in your hand.");
 									return true;
 								}
 							}

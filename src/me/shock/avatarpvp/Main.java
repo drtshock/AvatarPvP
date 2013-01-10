@@ -57,6 +57,7 @@ public class Main extends JavaPlugin
 	private void loadCommands()
 	{
 		getCommand("bind").setExecutor(new BindClear(this));
+		getCommand("apvp").setExecutor(new BindClear(this));
 		getCommand("earth").setExecutor(new Earth(this));
 		getCommand("air").setExecutor(new Air(this));
 		getCommand("anti").setExecutor(new Anti(this));

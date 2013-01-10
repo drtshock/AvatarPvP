@@ -5,3 +5,15 @@
 ##################################################
 ############### Config starts here ###############
 version: 0.1
+FireNation:
+  lightning:
+    cooldown: 30
+    radius: 10
+    damage: 2
+  fireball:
+    cooldown: 3
+EarthNation:
+  golem:
+    cooldown: 60
+  fortify:
+    cooldown: 60

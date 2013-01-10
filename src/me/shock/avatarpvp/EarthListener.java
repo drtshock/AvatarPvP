@@ -20,10 +20,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class EarthListener implements Listener
 {
-
-	public HashMap<String, Long> fortify = new HashMap<String, Long>();
-	public HashMap<String, Long> golem = new HashMap<String, Long>();
-
 	
 	public Main plugin;
 	
@@ -31,6 +27,13 @@ public class EarthListener implements Listener
 	{
 		this.plugin = instance;
 	}
+
+	
+	public HashMap<String, Long> fortify = new HashMap<String, Long>();
+	public HashMap<String, Long> golem = new HashMap<String, Long>();
+	
+	long fortifycool = plugin.getConfig().getLong("EarthNation.fortify.cooldown");
+	long golemcool = plugin.getConfig().getLong("EarthNation.golem.cooldown");
 	
 	String apvp = ChatColor.BLUE + "[" + ChatColor.WHITE + "AvatarPvP" + ChatColor.BLUE + "]" + ChatColor.WHITE + ": ";
 	
@@ -48,8 +51,6 @@ public class EarthListener implements Listener
 		 * Set up cooldowns in seconds.
 		 */
 		
-		long golemcool = 60;
-		long fortifycool = 60;
 		Player player = event.getPlayer();
 		Action action = event.getAction();
 		if(action == Action.LEFT_CLICK_BLOCK)
@@ -128,6 +129,10 @@ public class EarthListener implements Listener
 					ItemMeta meta = itemStack.getItemMeta();
 					List<String> lore = meta.getLore();
 					
+					if(!(itemStack.hasItemMeta()))
+					{
+						return;
+					}
 					if(lore.contains(ChatColor.GREEN + "Fortify"))
 					{
 
@@ -302,6 +307,11 @@ public class EarthListener implements Listener
 						{
 							player.sendMessage(apvp + "You don't have permission to use this ability.");
 						}
+					}
+					
+					else
+					{
+						return;
 					}
 			    }
 		    }
