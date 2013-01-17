@@ -54,7 +54,7 @@ public class Anti implements CommandExecutor
 			if(sender.hasPermission("avatarpvp.anti"))
 			{
 				// Check if they forgot to tell us which ability they want.
-				if(args.length != 2)
+				if(args.length != 1)
 				{
 					sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 					sender.sendMessage(apvp + "chi - block your target from using bending powers for 15 seconds.");
