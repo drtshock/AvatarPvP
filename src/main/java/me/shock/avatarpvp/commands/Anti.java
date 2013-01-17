@@ -49,7 +49,7 @@ public class Anti implements CommandExecutor
 		 * Stun - stun opponent for 3 seconds.
 		 */
 		
-		if(args[0].equalsIgnoreCase("anti"))
+		if(cmd.getName().equalsIgnoreCase("anti"))
 		{
 			if(sender.hasPermission("avatarpvp.anti"))
 			{
@@ -66,7 +66,7 @@ public class Anti implements CommandExecutor
 				else
 				{
 					// Chi Blocker ability.
-					if(args[1].equalsIgnoreCase("chi"))
+					if(args[0].equalsIgnoreCase("chi"))
 					{
 						if(sender.hasPermission("avatarpvp.anti.chi"))
 						{
@@ -104,7 +104,7 @@ public class Anti implements CommandExecutor
 					}
 					
 					// Stun ability.
-					if(args[1].equalsIgnoreCase("stun"))
+					if(args[0].equalsIgnoreCase("stun"))
 					{
 						if(sender.hasPermission("avatarpvp.anti.stun"))
 						{
