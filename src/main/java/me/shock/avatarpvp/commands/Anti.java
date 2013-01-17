@@ -87,9 +87,11 @@ public class Anti implements CommandExecutor
 								}
 								else
 								{
-									lore.add(ChatColor.GREEN + "Chi Blocker");
 									itemstack.setItemMeta(meta);
-									sender.sendMessage(apvp + "Successfully binded " + ChatColor.RED + "Chi Blocker" + ChatColor.WHITE + "to the item in your hand.");
+									lore.add(ChatColor.RED + "Chi Blocker");
+									meta.setLore(lore);
+									itemstack.setItemMeta(meta);
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.RED + "Chi Blocker" + ChatColor.WHITE + " to the item in your hand.");
 									return true;
 								}
 							}
@@ -102,7 +104,7 @@ public class Anti implements CommandExecutor
 					}
 					
 					// Stun ability.
-					if(args[1].equalsIgnoreCase("chi"))
+					if(args[1].equalsIgnoreCase("stun"))
 					{
 						if(sender.hasPermission("avatarpvp.anti.stun"))
 						{
@@ -123,9 +125,11 @@ public class Anti implements CommandExecutor
 								}
 								else
 								{
-									lore.add(ChatColor.GREEN + "Electric Glove");
 									itemstack.setItemMeta(meta);
-									sender.sendMessage(apvp + "Successfully binded " + ChatColor.RED + "Electric Glove" + ChatColor.WHITE + "to the item in your hand.");
+									lore.add(ChatColor.RED + "Stun");
+									meta.setLore(lore);
+									itemstack.setItemMeta(meta);
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.RED + "Stun" + ChatColor.WHITE + " to the item in your hand.");
 									return true;
 								}
 							}

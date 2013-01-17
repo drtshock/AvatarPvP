@@ -83,9 +83,11 @@ public class Water implements CommandExecutor
 								}
 								else
 								{
-									lore.add(ChatColor.BLUE + "Ice Bow");
 									itemstack.setItemMeta(meta);
-									sender.sendMessage(apvp + "Successfully binded " + ChatColor.BLUE + "Ice Bow" + ChatColor.WHITE + "to the item in your hand.");
+									lore.add(ChatColor.BLUE + "Ice Bow");
+									meta.setLore(lore);
+									itemstack.setItemMeta(meta);
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.BLUE + "Ice Bow" + ChatColor.WHITE + " to the item in your hand.");
 									return true;
 								}
 							}
