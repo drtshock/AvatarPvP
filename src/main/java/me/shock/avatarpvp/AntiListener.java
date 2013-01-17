@@ -58,6 +58,8 @@ public class AntiListener implements Listener
 				List<String> lore = meta.getLore();
 				if(itemStack.hasItemMeta())
 				{
+					if(itemStack.getItemMeta().hasEnchants())
+						return;
 					
 					if(lore.contains(ChatColor.GREEN + "Golem"))
 					{

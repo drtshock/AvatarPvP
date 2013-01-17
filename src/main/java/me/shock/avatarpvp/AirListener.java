@@ -58,7 +58,8 @@ public class AirListener implements Listener
 				 * Allow player to fly for 5 seconds.
 				 * then run a task to stop it.
 				 */
-				
+				if(inHand.getItemMeta().hasEnchants())
+					return;
 				if(lore.contains(ChatColor.AQUA + "Fly"))
 				{
 					if(player.hasPermission("avatarpvp.air.fly"))
