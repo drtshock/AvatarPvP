@@ -51,12 +51,12 @@ public class Water implements CommandExecutor
 		 * Make configurable.
 		 */
 		
-		if(args[0].equalsIgnoreCase("water"))
+		if(cmd.getName().equalsIgnoreCase("water"))
 		{
 			if(sender.hasPermission("avatarpvp.water"))
 			{
 				// Check if they forgot to tell us which ability they want.
-				if(args.length != 2)
+				if(args.length != 1)
 				{
 					sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 					sender.sendMessage(apvp + "ice - Bow shoots ice arrow.");
@@ -68,7 +68,7 @@ public class Water implements CommandExecutor
 				else
 				{
 					// IceBow ability.
-					if(args[1].equalsIgnoreCase("ice"))
+					if(args[0].equalsIgnoreCase("ice"))
 					{
 						if(sender.hasPermission("avatarpvp.water.icebow"))
 						{
