@@ -101,6 +101,8 @@ public class AirListener implements Listener
 						return;
 					}
 				}
+				else
+					return;
 			}
 		}
 	}

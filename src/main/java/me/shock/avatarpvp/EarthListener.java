@@ -107,6 +107,8 @@ public class EarthListener implements Listener
 							player.sendMessage(apvp + "You don't have permission to use this ability.");
 						}
 					}
+					else
+						return;
 				}
 				else
 					return;

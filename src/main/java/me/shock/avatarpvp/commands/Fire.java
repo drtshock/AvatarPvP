@@ -93,7 +93,7 @@ public class Fire implements CommandExecutor
 									lore.add(ChatColor.DARK_RED + "FireBall");
 									meta.setLore(lore);
 									itemstack.setItemMeta(meta);
-									sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "Fireball" + ChatColor.WHITE + "to the item in your hand.");
+									sender.sendMessage(apvp + "Successfully binded " + ChatColor.DARK_RED + "Fireball" + ChatColor.WHITE + " to the item in your hand.");
 									return true;
 								}
 							}

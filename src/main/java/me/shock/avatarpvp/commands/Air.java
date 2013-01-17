@@ -99,7 +99,7 @@ public class Air implements CommandExecutor
 				}
 				
 				// Check if they forgot to tell us which ability they want.
-				if(args.length != 2)
+				if(args.length != 1)
 				{
 					sender.sendMessage(apvp + "Bind different abilities to the item in your hand. Try:");
 					sender.sendMessage(apvp + "fly - have fly ability for 5 seconds.");

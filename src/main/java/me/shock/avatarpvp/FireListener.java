@@ -59,7 +59,7 @@ public class FireListener implements Listener
 				 * Fireball ability
 				 */
 				
-				if(lore.contains(ChatColor.DARK_RED + "Fireball"))
+				if(lore.contains(ChatColor.DARK_RED + "FireBall"))
 				{
 					/**
 					 * Check if player has used it before.
