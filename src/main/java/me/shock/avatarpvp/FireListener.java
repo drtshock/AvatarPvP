@@ -69,9 +69,9 @@ public class FireListener implements Listener
 					if(fireball.containsKey(name))
 					{
 						long diff = (System.currentTimeMillis() - fireball.get(name)) / 1000;
-						if(diff > fireballCool)
+						if(diff < fireballCool)
 						{
-							player.sendMessage(apvp + "You must wait " + ChatColor.RED + diff + " seconds to use this again.");
+							player.sendMessage(apvp + "You must wait " + ChatColor.RED + (fireballCool - diff) + ChatColor.WHITE + " seconds before using this again.");
 							return;
 						}
 						else
@@ -81,6 +81,7 @@ public class FireListener implements Listener
 							player.launchProjectile(Fireball.class);
 							fireball.put(name, System.currentTimeMillis());
 							player.sendMessage(apvp + "You launched a " + ChatColor.DARK_RED + "fireball" + ChatColor.WHITE + ".");
+							return;
 						}
 					}
 					
