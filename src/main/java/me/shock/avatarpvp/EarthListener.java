@@ -136,9 +136,10 @@ public class EarthListener implements Listener
 					List<String> lore = meta.getLore();
 					
 					if(!(itemStack.hasItemMeta()))
-					{
 						return;
-					}
+					if(itemStack.getItemMeta().hasEnchants())
+						return;
+					
 					if(lore.contains(ChatColor.GREEN + "Fortify"))
 					{
 

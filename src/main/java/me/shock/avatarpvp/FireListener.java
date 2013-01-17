@@ -59,6 +59,9 @@ public class FireListener implements Listener
 				 * Fireball ability
 				 */
 				
+				if(itemStack.getItemMeta().hasEnchants())
+					return;
+				
 				if(lore.contains(ChatColor.DARK_RED + "FireBall"))
 				{
 					/**
