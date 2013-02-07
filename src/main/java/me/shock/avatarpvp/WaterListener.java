@@ -2,6 +2,7 @@ package me.shock.avatarpvp;
 
 import java.util.Random;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,6 +52,9 @@ public class WaterListener implements Listener
 			int damage = event.getDamage();
 			if(player.hasPermission("avatarpvp.water.moon"))
 			{
+				if(checkBlocked(player))
+					return;
+				
 				long time = player.getWorld().getTime();
 				if(time > 18000)
 				{
@@ -67,6 +71,9 @@ public class WaterListener implements Listener
 			DamageCause cause = event.getCause();
 			if(cause == DamageCause.PROJECTILE && player.hasPermission("avatarpvp.water.icearrow") && damagee instanceof Player)
 			{
+				if(checkBlocked(player))
+					return;
+				
 				Player damagedPlayer = (Player) damagee;
 				Random generator = new Random();
 				int random = generator.nextInt(4);
@@ -77,5 +84,14 @@ public class WaterListener implements Listener
 			}
 			
 		}
+	}
+	public boolean checkBlocked(Player player)
+	{
+		if(plugin.blocked.contains(player.getName()))
+		{
+			player.sendMessage(ChatColor.RED + "You are blocked from using any abilities!");
+			return true;
+		}
+		return false;
 	}
 }

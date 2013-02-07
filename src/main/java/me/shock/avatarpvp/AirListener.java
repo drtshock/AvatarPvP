@@ -70,7 +70,10 @@ public class AirListener implements Listener
 						 * If yes then check cooldown and let them know
 						 * how much time they have left.
 						 */
-						
+						if(checkBlocked(player))
+						{
+							return;
+						}
 						if(fly.containsKey(player.getName()))
 						{
 							long diff = (System.currentTimeMillis() - fly.get(player.getName())) / 1000;
@@ -132,5 +135,15 @@ public class AirListener implements Listener
 			
 		      return;
 		}
+	}
+	
+	public boolean checkBlocked(Player player)
+	{
+		if(plugin.blocked.contains(player.getName()))
+		{
+			player.sendMessage(ChatColor.RED + "You are blocked from using any abilities!");
+			return true;
+		}
+		return false;
 	}
 }

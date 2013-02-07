@@ -61,6 +61,8 @@ public class FireListener implements Listener
 				
 				if(itemStack.getItemMeta().hasEnchants())
 					return;
+				if(checkBlocked(player))
+					return;
 				
 				if(lore.contains(ChatColor.DARK_RED + "FireBall"))
 				{
@@ -185,6 +187,16 @@ public class FireListener implements Listener
 				}
 			}
 		}
+	}
+	
+	public boolean checkBlocked(Player player)
+	{
+		if(plugin.blocked.contains(player.getName()))
+		{
+			player.sendMessage(ChatColor.RED + "You are blocked from using any abilities!");
+			return true;
+		}
+		return false;
 	}
 	
 }

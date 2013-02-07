@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +19,6 @@ import me.shock.avatarpvp.WaterTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,8 +29,7 @@ public class Main extends JavaPlugin
 	File file;
 	
 	public static Main plugin;
-
-	Logger log = Bukkit.getServer().getLogger();
+	public ArrayList<String> blocked;
 
 	public void onEnable()
 	{
@@ -76,14 +75,12 @@ public class Main extends JavaPlugin
 	
 	private void loadConfig()
 	{
-		PluginDescriptionFile pdfFile = getDescription();
-        @SuppressWarnings("unused")
-		String version = pdfFile.getVersion();	
+		Logger log = Bukkit.getServer().getLogger();
 		/**
 		 * Check to see if there's a config.
 		 * If not then create a new one.
 		 */
-		File config = new File(getDataFolder() + "/config.yml");
+		File config = new File(getDataFolder() + File.separator+ "config.yml");
 		if(!config.exists())
 		{
 			try{

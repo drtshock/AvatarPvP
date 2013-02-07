@@ -3,9 +3,9 @@ package me.shock.avatarpvp;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -25,12 +26,20 @@ public class EarthListener implements Listener {
 	public EarthListener(Main instance) {
 		this.plugin = instance;
 	}
+	EarthTask earthTask = new EarthTask();
 
 	public HashMap<String, Long> fortify = new HashMap<String, Long>();
 	public HashMap<String, Long> golem = new HashMap<String, Long>();
+<<<<<<< HEAD
 
 	// int fcool = plugin.getConfig().getInt("EarthNation.fortify.cooldown");
 	// int gcool = plugin.getConfig().getInt("EarthNation.golem.cooldown");
+=======
+	public HashMap<String, Long> noDamage = new HashMap<String, Long>();
+	
+	//int fcool = plugin.getConfig().getInt("EarthNation.fortify.cooldown");
+	//int gcool = plugin.getConfig().getInt("EarthNation.golem.cooldown");
+>>>>>>> Add chi blocker.
 	long fortifycool = (long) 30;
 	long golemcool = (long) 30;
 
@@ -113,6 +122,7 @@ public class EarthListener implements Listener {
 			 * the player and not the clicked block so they don't spawn the box
 			 * on themselves.
 			 */
+<<<<<<< HEAD
 			if (player.getItemInHand().getAmount() > 0) {
 				ItemStack itemStack = player.getItemInHand();
 				ItemMeta meta = itemStack.getItemMeta();
@@ -228,6 +238,50 @@ public class EarthListener implements Listener {
 								fortify.remove(player.getName());
 								fortify.put(player.getName(),
 										System.currentTimeMillis());
+=======
+			if(player.getItemInHand().getAmount() > 0)
+			{
+					ItemStack itemStack = player.getItemInHand();
+					ItemMeta meta = itemStack.getItemMeta();
+					List<String> lore = meta.getLore();
+					
+					if(!(itemStack.hasItemMeta()))
+						return;
+					if(itemStack.getItemMeta().hasEnchants())
+						return;
+					
+					if(lore.contains(ChatColor.GREEN + "Fortify"))
+					{
+
+						if(player.hasPermission("avatarpvp.earth.fortify"))
+						{
+							if(checkBlocked(player))
+								return;
+							
+							if(fortify.containsKey(player.getName()))
+							{
+								long diff = (System.currentTimeMillis() - fortify.get(player.getName())) / 1000;
+								
+								// Used it too recently.
+								if(fortifycool > diff)
+								{
+									player.sendMessage(apvp + "You must wait " + ChatColor.RED + (fortifycool - diff) + ChatColor.WHITE + " seconds before using this again.");
+								}
+								// Can use the ability again.
+								else
+								{
+									player.sendMessage(apvp + "You are protected.");
+									fortify.remove(player.getName());
+									fortify.put(player.getName(), System.currentTimeMillis());
+								}
+							}
+							else
+							{
+								noDamage.put(player.getName(), System.currentTimeMillis());
+								Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new WaterTask(plugin, 0), 100);
+								player.sendMessage(apvp + "Obsidian fortification is protecting you.");
+								fortify.put(player.getName(), System.currentTimeMillis());
+>>>>>>> Add chi blocker.
 							}
 						} else {
 							Location loc = player.getLocation();
@@ -347,5 +401,32 @@ public class EarthListener implements Listener {
 			return;
 		}
 		return;
+	}
+	
+	/**
+	 * Cancel damage if a player has fortify on.
+	 * @param event
+	 */
+	@EventHandler
+	public void onDamage(EntityDamageEvent event)
+	{
+		if(event.getEntity() instanceof Player)
+		{
+			Player player = (Player) event.getEntity();
+			if(noDamage.containsKey(player.getName()))
+			{
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	public boolean checkBlocked(Player player)
+	{
+		if(plugin.blocked.contains(player.getName()))
+		{
+			player.sendMessage(ChatColor.RED + "You are blocked from using any abilities!");
+			return true;
+		}
+		return false;
 	}
 }

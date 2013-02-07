@@ -3,17 +3,21 @@ package me.shock.avatarpvp;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 
 public class AntiListener implements Listener 
 {
@@ -40,6 +44,73 @@ public class AntiListener implements Listener
 	 */
 	
 	@EventHandler
+	public void onHit(EntityDamageByEntityEvent event)
+	{
+		Entity entity = event.getEntity();
+		Entity hitter = event.getDamager();
+		if((entity.getType() == EntityType.PLAYER) && (hitter.getType() == EntityType.PLAYER))
+		{
+			Player damaged = (Player) entity;
+			Player damager = (Player) entity;
+			if(damager.getItemInHand().getAmount() > 0)
+			{
+				ItemStack is = damager.getItemInHand();
+				ItemMeta meta = is.getItemMeta();
+				List<String> lore = meta.getLore();
+				if(is.hasItemMeta())
+				{
+					if(is.getItemMeta().hasEnchants())
+						return;
+					if(lore.contains(ChatColor.RED + "Chi Blocker") 
+							&& damager.hasPermission("avatarpvp.anti.chi") 
+							&& !damaged.hasPermission("avatarpvp.anti.chi"))
+					{
+						if(chi.containsKey(damager.getName()))
+						{
+							long diff = (System.currentTimeMillis() - chi.get(damager.getName())) / 1000;
+							
+							// Used it too recently.
+							if(chiCool > diff)
+							{
+								damager.sendMessage(apvp + "You must wait " + ChatColor.RED + (chiCool - diff) + ChatColor.WHITE + " seconds before using this again.");
+							}
+							
+							// Can use it again.
+							else
+							{
+								chiBlock(damaged.getName());
+								plugin.blocked.add(damaged.getName());
+								chi.remove(damager.getName());
+								chi.put(damager.getName(), System.currentTimeMillis());
+								damager.sendMessage(apvp + "You just Chi Blocked " + damaged.getName());
+							}
+						}
+						else
+						{
+							chiBlock(damaged.getName());
+							chi.put(damager.getName(), System.currentTimeMillis());
+							damager.sendMessage(apvp + "You just Chi Blocked " + damaged.getName());
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public void chiBlock(final String name)
+	{
+		 Bukkit.getServer().getScheduler().runTaskAsynchronously((Plugin) this, new Runnable()
+         {
+             @Override
+             public void run()
+             {
+                 plugin.blocked.remove(plugin.blocked.contains(name));
+             }
+         });	
+	}
+	
+	
+	@EventHandler
 	public void antiInteract(PlayerInteractEvent event)
 	{
 		/**
@@ -61,7 +132,7 @@ public class AntiListener implements Listener
 					if(itemStack.getItemMeta().hasEnchants())
 						return;
 					
-					if(lore.contains(ChatColor.GREEN + "Golem"))
+					if(lore.contains(ChatColor.RED + "Chi Blocker"))
 					{
 						if(player.hasPermission("avatarpvp.anti.chi"))
 						{
